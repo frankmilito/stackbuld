@@ -2,10 +2,10 @@
 import { useEffect } from "react";
 import { redirect } from "next/navigation";
 import { store } from "../../globalStore/store";
-function withAuth<T>(Component) {
+function withAuth(Component) {
   const token = store?.getState()?.post.token;
   // eslint-disable-next-line react/display-name
-  return (props: T) => {
+  return (props) => {
     // make a api call to check if user is authenticated
     // checks whether we are on client / browser or server.
     if (typeof window !== "undefined") {
