@@ -46,7 +46,9 @@ const Posts = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         {posts.length > 0 ? (
           paginate(posts, currentPage, 8)
-            .filter((post: Post) => post.title.toLowerCase().includes(search))
+            .filter((post: Post) =>
+              post.title.toLowerCase().includes(search.toLowerCase())
+            )
             .map((item: Post) => (
               <div
                 // href={`/posts/${item._id}`}

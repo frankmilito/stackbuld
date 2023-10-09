@@ -18,15 +18,18 @@ const ViewPost = () => {
   return (
     <div className="flex flex-col justify-center items-center bg-white p-4 gap-y-4 mt-10 w-[90%] md:w-1/2 mx-auto rounded-md">
       <div>
-        <h1 className="" dangerouslySetInnerHTML={{ __html: post?.title }} />
+        <h1
+          className=""
+          dangerouslySetInnerHTML={{ __html: post?.title as string }}
+        />
       </div>
       <div>
-        <div dangerouslySetInnerHTML={{ __html: post?.content }} />
+        <div dangerouslySetInnerHTML={{ __html: post?.content as string }} />
         <div className="flex justify-between">
           <div>
             <p className="text-xs italic text-gray-400">Created</p>
             <span className="text-sm text-gray-500">
-              {formatDate(post?.createdAt)}
+              {formatDate(post?.createdAt as string)}
             </span>
           </div>
           <div>

@@ -32,7 +32,7 @@ const Edit = () => {
     }
     dispatch(
       editPosts({
-        postId: post?._id,
+        postId: post?._id as string,
         title,
         content,
         redirect,
@@ -42,8 +42,8 @@ const Edit = () => {
   const post = posts.find((postItem) => postItem._id === id);
 
   useEffect(() => {
-    setContent(post?.content);
-    setTitle(post?.title);
+    setContent(post?.content as string);
+    setTitle(post?.title as string);
   }, [post]);
 
   useEffect(() => {
