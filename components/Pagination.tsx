@@ -18,7 +18,7 @@ const Pagination: React.FC<PaginationProps> = ({
   );
 
   return (
-    <nav className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6 mt-5">
+    <nav className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6 my-5">
       <div className="hidden sm:block">
         <p className="text-sm text-gray-700">
           Page {currentPage} of {totalPages}{" "}

@@ -5,7 +5,7 @@ import "react-quill/dist/quill.snow.css";
 import { useAppDispatch, useAppSelector } from "@/globalStore/store";
 import { createPosts } from "@/globalStore/slices/postSlice";
 import { useRouter } from "next/navigation";
-import withAuth from "@/app/auth/withAuth";
+
 const Add = () => {
   const router = useRouter();
   const { userData } = useAppSelector((state) => state.post);
@@ -42,22 +42,55 @@ const Add = () => {
   useEffect(() => {
     setError(false);
   }, [title, content]);
+
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, 3, 4, false] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [
+        { list: "ordered" },
+        { list: "bullet" },
+        { indent: "-1" },
+        { indent: "+1" },
+      ],
+      ["link", "image"],
+      ["clean"],
+    ],
+  };
+
+  const formats = [
+    "header",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote",
+    "list",
+    "bullet",
+    "indent",
+    "link",
+    "image",
+  ];
   return (
     <div>
-      <div>
-        <label>Title:</label>
+      <div className="mb-5">
+        <label className="font-bold text-sm">Title:</label>
         <ReactQuill
           value={title}
           onChange={handleTitleChange}
-          placeholder="Enter the title here..."
+          placeholder="Enter your post title here..."
+          modules={modules}
+          formats={formats}
         />
       </div>
       <div>
-        <label>Content:</label>
+        <label className="font-bold text-sm">Content:</label>
         <ReactQuill
           value={content}
           onChange={handleContentChange}
           placeholder="Write your blog post content here..."
+          modules={modules}
+          formats={formats}
         />
       </div>
       {error && (

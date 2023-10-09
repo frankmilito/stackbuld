@@ -6,7 +6,6 @@ import { useAppDispatch, useAppSelector } from "@/globalStore/store";
 import { createPosts, editPosts } from "@/globalStore/slices/postSlice";
 import { useRouter } from "next/navigation";
 import { useParams } from "next/navigation";
-import withAuth from "@/app/auth/withAuth";
 
 const Edit = () => {
   const { id } = useParams();
@@ -77,11 +76,11 @@ const Edit = () => {
           className="border-none bg-red-500 text-white  p-2 px-3 rounded-md text-sm "
           onClick={handleAdd}
         >
-          {loading ? "Creating..." : " Edit Post"}
+          {loading ? "Editing..." : " Edit Post"}
         </button>
       </div>
     </div>
   );
 };
 
-export default withAuth(Edit);
+export default Edit;

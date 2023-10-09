@@ -4,7 +4,7 @@ import axiosInstance from "@/api";
 // import axiosInstance from "../../../service/api";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toast";
-
+import { deleteCookie, setCookie } from "cookies-next";
 type InitState = {
   loading: boolean;
   posts: Post[];
@@ -43,7 +43,7 @@ export const registration = createAsyncThunk(
   async (payload: RegisterPayload, { dispatch, rejectWithValue }) => {
     try {
       const res = await axiosInstance.post("/auth/register", payload);
-
+      setCookie("secret", res.data.data.token);
       payload?.redirect();
       return res.data.data;
     } catch (error: any) {
@@ -56,7 +56,7 @@ export const login = createAsyncThunk(
   async (payload: LoginPayload, { dispatch, rejectWithValue }) => {
     try {
       const res = await axiosInstance.post("/auth/login", payload);
-
+      setCookie("secret", res.data.data.token);
       payload?.redirect();
       return res.data.data;
     } catch (error: any) {
@@ -107,6 +107,7 @@ export const deletePosts = createAsyncThunk(
         `/myposts/delete/${payload.postId}`
       );
       toast.success("Post deleted successfully");
+      dispatch(getPosts());
     } catch (error: any) {
       return rejectWithValue(error);
     }
@@ -120,7 +121,10 @@ export const postSlice = createSlice({
     logUser: (state) => {
       state.isLogin = !state.isLogin;
     },
-    logout: (state) => initialState,
+    logout: (state) => {
+      deleteCookie("secret");
+      return initialState;
+    },
   },
   extraReducers: (builder) => {
     builder

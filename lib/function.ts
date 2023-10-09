@@ -5,19 +5,23 @@ export function paginate(array: any, page: number, itemsPerPage: number) {
 }
 
 export const formatDate = (timestamp: string) => {
-  const originalDate = new Date(timestamp);
-  const formattedDate = originalDate.toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-  });
+  const dateObject = new Date(timestamp);
 
-  // Format time to 'HH:MM' format
-  const formattedTime = originalDate.toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false, // Use 24-hour format
-  });
+  const year = dateObject.getFullYear();
+  const month = String(dateObject.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
+  const day = String(dateObject.getDate()).padStart(2, "0");
+  const hours = String(dateObject.getUTCHours()).padStart(2, "0");
+  const minutes = String(dateObject.getUTCMinutes()).padStart(2, "0");
 
-  const formattedDateTime = `${formattedDate} at ${formattedTime}`;
+  const formattedDateTime = `${year}-${month}-${day} ${hours}:${minutes}`;
+
   return formattedDateTime;
 };
+
+export function truncateText(text: string, maxLength: number) {
+  if (text.length <= maxLength) {
+    return text; // No need to truncate
+  } else {
+    return text.slice(3, maxLength) + "..."; // Truncate and add ellipsis
+  }
+}

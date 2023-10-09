@@ -28,11 +28,7 @@ function RandomQuotes() {
     };
   }, [currentIndex, data]);
 
-  return (
-    <div>
-      <h1>{data[currentIndex]}</h1>
-    </div>
-  );
+  return <>{data[currentIndex]}</>;
 }
 
 export default RandomQuotes;

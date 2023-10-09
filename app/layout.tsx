@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} ${ceder.variable} bg-red-50 w-[70%] mx-auto`}
+        className={`${inter.className} ${ceder.variable} bg-red-50 w-[90%] md:w-[70%] mx-auto`}
       >
         <GlobalProviders>{children}</GlobalProviders>
       </body>

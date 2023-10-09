@@ -2,6 +2,7 @@ import axios from "axios";
 import { store } from "../globalStore/store";
 
 const baseUrl = "https://social-backend-6hae.onrender.com";
+// const baseUrl = "http://localhost:3005";
 
 const axiosInstance = axios.create({
   baseURL: baseUrl,
