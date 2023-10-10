@@ -1,17 +1,14 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { useAppDispatch, useAppSelector } from "@/globalStore/store";
-import { createPosts, editPosts } from "@/globalStore/slices/postSlice";
+import { useAppSelector } from "@/globalStore/store";
 import { useRouter } from "next/navigation";
 import { useParams } from "next/navigation";
 import { formatDate } from "@/lib/function";
 
 const ViewPost = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
 
-  const router = useRouter();
   const { posts } = useAppSelector((state) => state.post);
   const post = posts.find((postItem) => postItem._id === id);
 
@@ -20,16 +17,16 @@ const ViewPost = () => {
       <div>
         <h1
           className=""
-          dangerouslySetInnerHTML={{ __html: post?.title as string }}
+          dangerouslySetInnerHTML={{ __html: post?.title || "" }}
         />
       </div>
       <div>
-        <div dangerouslySetInnerHTML={{ __html: post?.content as string }} />
+        <div dangerouslySetInnerHTML={{ __html: post?.content || "" }} />
         <div className="flex justify-between">
           <div>
             <p className="text-xs italic text-gray-400">Created</p>
             <span className="text-sm text-gray-500">
-              {formatDate(post?.createdAt as string)}
+              {formatDate(post?.createdAt || "")}
             </span>
           </div>
           <div>

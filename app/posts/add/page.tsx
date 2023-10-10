@@ -1,6 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import ReactQuill from "react-quill";
+// import ReactQuill from "react-quill";
+import dynamic from "next/dynamic";
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import "react-quill/dist/quill.snow.css";
 import { useAppDispatch, useAppSelector } from "@/globalStore/store";
 import { createPosts } from "@/globalStore/slices/postSlice";
@@ -43,44 +45,14 @@ const Add = () => {
     setError(false);
   }, [title, content]);
 
-  const modules = {
-    toolbar: [
-      [{ header: [1, 2, 3, 4, false] }],
-      ["bold", "italic", "underline", "strike", "blockquote"],
-      [
-        { list: "ordered" },
-        { list: "bullet" },
-        { indent: "-1" },
-        { indent: "+1" },
-      ],
-      ["link", "image"],
-      ["clean"],
-    ],
-  };
-
-  const formats = [
-    "header",
-    "bold",
-    "italic",
-    "underline",
-    "strike",
-    "blockquote",
-    "list",
-    "bullet",
-    "indent",
-    "link",
-    "image",
-  ];
   return (
     <div>
       <div className="mb-5">
         <label className="font-bold text-sm">Title:</label>
         <ReactQuill
-          value={title}
+          value={"hi"}
           onChange={handleTitleChange}
           placeholder="Enter your post title here..."
-          modules={modules}
-          formats={formats}
         />
       </div>
       <div>
@@ -89,8 +61,6 @@ const Add = () => {
           value={content}
           onChange={handleContentChange}
           placeholder="Write your blog post content here..."
-          modules={modules}
-          formats={formats}
         />
       </div>
       {error && (
