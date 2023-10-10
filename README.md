@@ -1,8 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Front-end Assessment for Stackbuld
 
-## Getting Started
+This is a simple blogging application which has CRUD functionality and also authentication.
+You can register and create, read, update and delete posts.
+How ever you can only Edit and delete posts created by you.
 
-First, run the development server:
+## Users can log in with this detail to test or create a new one
+email: testuser@gmail.com
+password: password
+
+This project implements 5 screens using Next JS, with routes
+
+- /
+- /post
+- /post/:id
+- /post/add/:id
+- /post/edit/:id
+
+## Technologies
+
+A list of technologies used within the project:
+- Next Js
+- Typescript
+- Tailwind CSS
+- Redux Tool Kit
+
+## How to Run the project
+
+- git clone this repository
+- run npm install
+- run npm run dev
 
 ```bash
 npm run dev
