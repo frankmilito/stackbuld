@@ -16,13 +16,16 @@ const ViewPost = () => {
     <div className="flex flex-col justify-center items-center bg-white p-4 gap-y-4 mt-10 w-[90%] md:w-1/2 mx-auto rounded-md">
       <div>
         <h1
-          className=""
+          className="font-bold"
           dangerouslySetInnerHTML={{ __html: post?.title || "" }}
         />
       </div>
       <div>
-        <div dangerouslySetInnerHTML={{ __html: post?.content || "" }} />
-        <div className="flex justify-between">
+        <div
+          className="mb-5"
+          dangerouslySetInnerHTML={{ __html: post?.content || "" }}
+        />
+        <div className="flex justify-between gap-y-6">
           <div>
             <p className="text-xs italic text-gray-400">Created</p>
             <span className="text-sm text-gray-500">

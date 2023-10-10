@@ -18,7 +18,7 @@ const Login = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const redirect = () => router.replace("/posts");
+  const redirect = () => router.push("/posts");
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
