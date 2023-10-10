@@ -50,7 +50,7 @@ const Add = () => {
       <div className="mb-5">
         <label className="font-bold text-sm">Title:</label>
         <ReactQuill
-          value={"hi"}
+          value={title}
           onChange={handleTitleChange}
           placeholder="Enter your post title here..."
         />
