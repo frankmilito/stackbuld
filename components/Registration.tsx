@@ -20,7 +20,10 @@ const RegistrationForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const redirect = () => router.replace("/posts");
+  const redirect = () => {
+    router.push("/posts");
+    router.refresh();
+  };
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
