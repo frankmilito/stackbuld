@@ -9,8 +9,8 @@ const Login = () => {
   const { loading } = useAppSelector((state) => state.post);
   const dispatch = useAppDispatch();
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: "testuser@gmail.com",
+    password: "password",
   });
 
   const handleChange = (e: { target: { name: string; value: string } }) => {

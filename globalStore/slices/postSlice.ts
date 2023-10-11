@@ -23,7 +23,7 @@ const initialState: InitState = {
     userId: "",
     username: "",
   },
-  isLogin: false,
+  isLogin: true,
 };
 
 export const getPosts = createAsyncThunk(

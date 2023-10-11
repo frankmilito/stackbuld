@@ -11,7 +11,7 @@ const Navbar = () => {
   const { userData } = useAppSelector((state) => state.post);
   const handleLogout = () => {
     dispatch(logout());
-    router.push("/");
+    router.push("/auth");
   };
 
   const navlinks = [

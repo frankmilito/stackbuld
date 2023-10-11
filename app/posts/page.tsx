@@ -4,7 +4,12 @@ import { useAppDispatch, useAppSelector } from "@/globalStore/store";
 import { deletePosts, getPosts } from "@/globalStore/slices/postSlice";
 import { useRouter } from "next/navigation";
 
-import { paginate, formatDate, truncateText } from "@/lib/function";
+import {
+  paginate,
+  formatDate,
+  truncateText,
+  isAuthorized,
+} from "@/lib/function";
 import Pagination from "@/components/Pagination";
 import RandomQuotes from "@/components/RandomQuotes";
 import Link from "next/link";
@@ -23,6 +28,11 @@ const Posts = () => {
     dispatch(getPosts());
   }, [dispatch]);
 
+  const handleAdd = () => {
+    isAuthorized();
+    router.push("/posts/add");
+  };
+
   return (
     <div className="  ">
       <h2 className="text-4xl my-20 leading-10 md:leading-normal w-full md:w-2/3 font-cursive mb-6 md:mb-10">
@@ -31,7 +41,7 @@ const Posts = () => {
       <div className="flex justify-between mb-10">
         <button
           className="border-none bg-red-500 text-white  p-2 px-3 rounded-md text-sm"
-          onClick={() => router.push("/posts/add")}
+          onClick={handleAdd}
         >
           Add Post
         </button>
@@ -89,15 +99,19 @@ const Posts = () => {
                   <div className="flex justify-between">
                     <button
                       className="border border-red-500 text-red-500  p-1 px-3 rounded-md text-xs"
-                      onClick={() => router.push(`/posts/edit/${item._id}`)}
+                      onClick={() => {
+                        isAuthorized();
+                        router.push(`/posts/edit/${item._id}`);
+                      }}
                     >
                       Edit
                     </button>
                     <button
                       className="border-none bg-red-500 text-white  p-1 px-3 rounded-md text-xs"
-                      onClick={() =>
-                        dispatch(deletePosts({ postId: item._id }))
-                      }
+                      onClick={() => {
+                        isAuthorized();
+                        dispatch(deletePosts({ postId: item._id }));
+                      }}
                     >
                       Delete
                     </button>

@@ -1,3 +1,5 @@
+import { getCookie } from "cookies-next";
+
 export function paginate(array: any, page: number, itemsPerPage: number) {
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -23,5 +25,13 @@ export function truncateText(text: string, maxLength: number) {
     return text; // No need to truncate
   } else {
     return text.slice(3, maxLength) + "..."; // Truncate and add ellipsis
+  }
+}
+
+export function isAuthorized() {
+  const secret = getCookie("secret");
+  if (!secret) {
+    window.location.pathname = "/auth";
+    return;
   }
 }
